@@ -68,10 +68,10 @@ class Window(QWidget):
         fname = QFileDialog.getOpenFileName(self, 'Open file','c:\\', "Image files (*.jpg *.png *.jpeg)")
         imagePath = fname[0]
         pixmap = QPixmap(imagePath)
-        pixmap2 = pixmap.scaled(512, 512, QtCore.Qt.KeepAspectRatio)
-        self.lblImage.setPixmap(QPixmap(pixmap2))
+        pixmap_scaled = pixmap.scaled(512, 512, QtCore.Qt.KeepAspectRatio)
+        self.lblImage.setPixmap(QPixmap(pixmap_scaled))
         self.lblImage.setStyleSheet('border: 2px solid black; border-radius: 3px;')
-        self.resize(pixmap2.width(), pixmap2.height())
+        self.resize(pixmap_scaled.width(), pixmap_scaled.height())
 
     def process():
         return
