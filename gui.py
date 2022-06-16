@@ -2,14 +2,14 @@ from PyQt5 import QtGui
 from PyQt5 import QtCore
 from PyQt5.QtWidgets import QApplication,QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QFileDialog , QLabel, QTextEdit
 import sys
-from PyQt5.QtGui import QPixmap
+from PyQt5.QtGui import QPixmap, QFont
 
 
 class Window(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.title = "PyQt5 Open File"
+        self.title = "Signature Verification - Tim Hore"
         self.top = 200
         self.left = 500
         self.width = 400
@@ -20,40 +20,48 @@ class Window(QWidget):
 
 
     def InitWindow(self):
-        self.setWindowIcon(QtGui.QIcon("icon.png"))
+        btnFont = QFont("Georgia")
+        lblFont = QFont("Constantia")
+        self.setWindowIcon(QtGui.QIcon("assets/icon.png"))
         self.setWindowTitle(self.title)
         self.setGeometry(self.left, self.top, self.width, self.height)
 
         vbox = QVBoxLayout()
         hbox = QHBoxLayout()
 
+        self.btnUpload = QPushButton("Upload Signature Sign")
+        self.btnUpload.setFont(btnFont)
+        self.btnUpload.clicked.connect(self.getImage)
 
-        self.btn = QPushButton("Upload Signature Sign")
-        self.btn.clicked.connect(self.getImage)
-
-        vbox.addWidget(self.btn)
+        vbox.addWidget(self.btnUpload)
 
         self.setLayout(vbox)
-        self.show()
     
-        self.label = QLabel("Your Image will be displayed here.")
-        self.label.setAlignment(QtCore.Qt.AlignCenter)
-        vbox.addWidget(self.label)
+        self.lblImage = QLabel("Your Image will be displayed here.")
+        self.lblImage.setFont(lblFont)
+        self.lblImage.setAlignment(QtCore.Qt.AlignCenter)
+        vbox.addWidget(self.lblImage)
         
-        self.btn1 = QPushButton("Process")
-
-        self.btn1.clicked.connect(self.process)
-        vbox.addWidget(self.btn1)
+        self.btnProcess = QPushButton("Process")
+        self.btnProcess.setFont(btnFont)
+        self.btnProcess.clicked.connect(self.process)
+        vbox.addWidget(self.btnProcess)
 
         vbox.addLayout(hbox)
 
-        self.label2 = QLabel("REAL")
-        self.label2.setAlignment(QtCore.Qt.AlignCenter)
-        hbox.addWidget(self.label2)
+        self.lblForge = QLabel("FORGE")
+        self.lblForge.setFont(lblFont)
+        # self.lblForge.setStyleSheet('color: #E83A14;')
+        self.lblForge.setAlignment(QtCore.Qt.AlignCenter)
+        hbox.addWidget(self.lblForge)
 
-        self.label3 = QLabel("FORGE")
-        self.label3.setAlignment(QtCore.Qt.AlignCenter)
-        hbox.addWidget(self.label3)
+        self.lblReal = QLabel("REAL")
+        self.lblReal.setFont(lblFont)
+        # self.lblReal.setStyleSheet('color: #5FD068;')
+        self.lblReal.setAlignment(QtCore.Qt.AlignCenter)
+        hbox.addWidget(self.lblReal)
+
+        self.show()
 
 
     def getImage(self):
@@ -61,7 +69,8 @@ class Window(QWidget):
         imagePath = fname[0]
         pixmap = QPixmap(imagePath)
         pixmap2 = pixmap.scaled(512, 512, QtCore.Qt.KeepAspectRatio)
-        self.label.setPixmap(QPixmap(pixmap2))
+        self.lblImage.setPixmap(QPixmap(pixmap2))
+        self.lblImage.setStyleSheet('border: 2px solid black; border-radius: 3px;')
         self.resize(pixmap2.width(), pixmap2.height())
 
     def process():
@@ -70,6 +79,6 @@ class Window(QWidget):
 
 
 App = QApplication(sys.argv)
-App.setStyleSheet("QLabel{font-size: 18pt; font-weight:800;} QPushButton{font-size: 12pt; font-weight:500;}")
+App.setStyleSheet("QLabel{font-size: 18pt; font-weight:800;} QPushButton{font-size: 12pt; font-weight:500; border: 2px solid #6D8B74; border-radius: 5px; background-color: #BDE6F1!important;}")
 window = Window()
 sys.exit(App.exec())
