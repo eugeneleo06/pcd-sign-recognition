@@ -29,7 +29,7 @@ class Window(QWidget):
         vbox = QVBoxLayout()
         hbox = QHBoxLayout()
 
-        self.btnUpload = QPushButton("Upload Signature Sign")
+        self.btnUpload = QPushButton("Upload signature to verify")
         self.btnUpload.setFont(btnFont)
         self.btnUpload.clicked.connect(self.getImage)
 
@@ -73,8 +73,8 @@ class Window(QWidget):
         self.lblImage.setStyleSheet('border: 2px solid black; border-radius: 3px;')
         self.resize(pixmap_scaled.width(), pixmap_scaled.height())
 
-    def process():
-        return
+    def process(self):
+        print("This is working")
 
 
 
