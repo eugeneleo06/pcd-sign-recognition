@@ -1,3 +1,7 @@
+TIM HORE - Pengolahan Citra Digital
+
+Topik : Handwritten Signature Verification
+
 Challenges :
 - Model yang terdapat dalam paper sulit diperoleh. Karena recognition tanda tangan tidak terlalu populer. Sehingga paper rujukan pun sulit ditemukan.
 - Dataset yang sulit diperoleh, karena dataset yang tersebar berupa data real / forge dan milik banyak subjek tertentu. Sehingga mesin perlu melakukan 2 job yaitu menentukan ttd milik siapa dan apakah itu real atau forged. dan menurut kami hal itu terlalu advanced. Jadi project ini berubah menjadi signature verification yaitu hanya untuk 1 subjek saja.
